@@ -32,7 +32,7 @@ def roll_dice(player_name):
     return sorted([dice1, dice2, dice3])
 
 def check_for_doubles(dices):
-    return len(set(dices)) == 2
+    return len(set(dices)) < 3
 
 def start_game():
     banker = choose_banker()
