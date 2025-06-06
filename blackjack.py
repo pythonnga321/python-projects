@@ -1,3 +1,4 @@
+#blackjack
 import time
 import random
 playercards = []
@@ -29,12 +30,34 @@ def playercard():
         time.sleep(1)
         card = random.choice(cards)
         name, _ = card
-        playercards.append(name)
         cards.remove(card)
+
+        if name == "Ace":
+            while True:
+                val = input("You got an Ace! Choose its value (1 or 11): ").strip()
+                if val == "1":
+                    playercards.append("Ace1")  # Ace as 1
+                    break
+                elif val == "11":
+                    playercards.append("Ace")   # Ace as 11
+                    break
+                else:
+                    print("Please enter 1 or 11.")
+        else:
+            playercards.append(name)
+
         print(f"Dealer passed you a {name}")
         print(playercards)
+
     while True:
-        playertotal = sum(card_values[card] for card in playercards)
+        # Calculate total treating "Ace1" as 1 and "Ace" as 11
+        playertotal = 0
+        for card in playercards:
+            if card == "Ace1":
+                playertotal += 1
+            else:
+                playertotal += card_values[card]
+
         if playertotal == 21:
             print(f"Your final hand: {playercards}")
             print(f"Total: {playertotal}")
@@ -51,8 +74,22 @@ def playercard():
             time.sleep(1)
             card = random.choice(cards)
             name, _ = card
-            playercards.append(name)
             cards.remove(card)
+
+            if name == "Ace":
+                while True:
+                    val = input("You got an Ace! Choose its value (1 or 11): ").strip()
+                    if val == "1":
+                        playercards.append("Ace1")
+                        break
+                    elif val == "11":
+                        playercards.append("Ace")
+                        break
+                    else:
+                        print("Please enter 1 or 11.")
+            else:
+                playercards.append(name)
+
             print(f"Dealer passed you a {name}")
             print(f"Your cards: {playercards}")
         elif more == "No":
