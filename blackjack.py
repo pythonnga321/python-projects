@@ -36,10 +36,10 @@ def playercard():
             while True:
                 val = input("You got an Ace! Choose its value (1 or 11): ").strip()
                 if val == "1":
-                    playercards.append("Ace1")  # Ace as 1
+                    playercards.append("Ace1")  
                     break
                 elif val == "11":
-                    playercards.append("Ace")   # Ace as 11
+                    playercards.append("Ace")   
                     break
                 else:
                     print("Please enter 1 or 11.")
@@ -50,7 +50,6 @@ def playercard():
         print(playercards)
 
     while True:
-        # Calculate total treating "Ace1" as 1 and "Ace" as 11
         playertotal = 0
         for card in playercards:
             if card == "Ace1":
@@ -62,7 +61,7 @@ def playercard():
             print(f"Your final hand: {playercards}")
             print(f"Total: {playertotal}")
             print("Blackjack! You win! 🎉")
-            return playertotal
+            return 0
         if playertotal > 21:
             print(f"Your final hand: {playercards}")
             print(f"Total: {playertotal}")
@@ -135,8 +134,6 @@ def botcard():
             print(f"Dealer's cards: {botcards}")
             print(f"Total: {bottotal}")
             return bottotal
-
-# Play both hands
 playertotal = playercard()
 if playertotal:
     bottotal = botcard()
